@@ -1,0 +1,46 @@
+{% extends 'expenses/base.html' %}
+
+{% block title %}
+User Account preferences
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <header>
+                    <h1 class="text-center font-weight-bolder mainhead">Benjamin</h1>
+          <div class="dropdown" align="right">
+              <button type="button" class="btn btn-success dropdown-toggle buttonDrop" data-toggle="dropdown" title="User account">
+                  <i class="fas fa-user fa-2x mx-auto d-block"></i>
+              </button>
+              <div class="dropdown-menu">
+                  <h5 class="dropdown-header text-center undrline">Account info</h5>
+                  <span>Logged in: <mark>{{ user.get_username }}</mark></span>
+                  <a class="dropdown-item" href="{% url 'account-prefs' %}"> <i class="fas fa-cogs"></i> Account prefs</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
+              </div>
+              </div>
+                    <a class="arrowbtns mx-auto" data-toggle="tooltip" title="Previous Page - Home" aria-label="Back to home" href="javascript:history.back()"><i class="fas fa-home fa-2x"></i></a>
+                </header>
+
+                <hr>
+                <h3 class="subhead">Account preferences:</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-style">Save Account Preferences</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js" integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k" crossorigin="anonymous"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+{% endblock %}

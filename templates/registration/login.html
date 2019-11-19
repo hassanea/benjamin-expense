@@ -1,0 +1,64 @@
+{# See https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication #}
+
+{% extends 'expenses/base.html' %}
+
+{% block title %}
+    Login - Benjamin
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<body>
+<div class="container-fluid" align="center">
+    <div class="row">
+      <div class="col-md-12"> 
+    <header>
+            <h1 class="submainhead font-weight-bolder">Benjamin</h1>
+            <img src="{% static 'images/100-dollar_bills.jpg' %}" alt="Benjamin's 100 dollar bills" class="rounded-circle">
+    </header> <br>  
+          <div class="card bg_pwb">
+              <h2 class="subhead">Login:</h2>
+              <hr>
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+    {% else %}
+        <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+        <div class="form-group">
+          <tr>
+            <td class="font-weight-bolder">{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+          </tr>
+        </div>
+        <div class="form-group">
+          <tr>
+            <td class="font-weight-bolder">{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </div>    
+    </table>
+      <br>
+    <input type="submit" class="btn btn-style" value="Login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+<br>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}"> Forgot password?</a></p>
+<p><a href="{% url 'signup' %}">Signup!</a></p>
+ </div>         
+</div>
+</div>
+</div>          
+</body>
+{% endblock %}

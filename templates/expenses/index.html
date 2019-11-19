@@ -1,0 +1,100 @@
+{% extends 'expenses/base.html' %} {% block content %}
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <header>
+          <h1 class="text-center font-weight-bolder mainhead">Benjamin</h1>
+
+          <div class="dropdown" align="right">
+            <button type="button" class="btn btn-success dropdown-toggle buttonDrop" data-toggle="dropdown" title="User account">
+              <i class="fas fa-user fa-2x mx-auto d-block"></i>
+            </button>
+            <div class="dropdown-menu">
+              <h5 class="dropdown-header text-center undrline">Account info</h5>
+              <span>Logged in: <mark>{{ user.get_username }}</mark></span>
+              <a class="dropdown-item" href="{% url 'account-prefs' %}"> <i class="fas fa-cogs"></i> Account prefs</a>    
+              <a class="dropdown-item" href="{% url 'logout' %}?next={% url 'login' %}">Logout</a>
+            </div>
+          </div>
+           <a class="arrowbtns mx-auto" data-toggle="tooltip" title="Home" aria-label="Home" href="{% url 'index' %}"><i class="fas fa-home fa-2x"></i></a>
+        </header>
+        <hr class="horizRule font-weight-bolder">
+        <div class="navigation-container">
+          <a class="arrowbtns mx-auto" data-toggle="tooltip" title="Previous" aria-label="Previous month" href="{% url 'view-month' prev_year prev_month %}">
+            <i class="fas fa-arrow-left fa-2x"></i>
+          </a>
+          <a class="arrowbtns mx-auto" data-toggle="tooltip" title="Next" aria-label="Next month" href="{% url 'view-month' next_year next_month %}">
+            <i class="fas fa-arrow-right fa-2x"></i>
+          </a>
+          <h2 class="date-header subhead">{{pretty_month}} {{pretty_year}}</h2>
+        </div>
+        <br>
+        <br>
+
+        <div class="expense-container">
+          <div class="expense-controls">
+            <a class="expense-control-add" data-toggle="tooltip" title="Add Expense" aria-label="Add expense" href="{% url 'create-expense' %}">
+              <i class="fas fa-plus fa-2x"></i>
+            </a>
+            <input class="expense-control-search text-center" type="text" id="expense-search" onkeyup="expenseSearch()" placeholder="Search expenses..." aria-label="Search for expenses"/>
+          </div>
+
+          <ul id="expense-list" class="list-group">
+            {% for expense in expenses %}
+            <li class="list-group-item list-style expense-list-item"
+            {% if expense.color != none %}
+              style="border-top: 8px solid {{ expense.color }}"
+            {% endif %}
+            >
+              <span class="expense-item-title">
+                {{ expense.title }}:
+                <span class="text-primary undrline">${{expense.value}}</span>
+              </span>
+              <div>{{expense.comment}}</div>
+              <span>
+                <div class="expense-item-date font-weight-bolder">{{expense.start_date}}
+                  {% if expense.start_date != expense.end_date %}
+                    - {{ expense.end_date}}
+                  {% endif %}
+                </div>
+                <form class="expense-item-delete-form" method='POST' action="{% url 'delete-expense' expense_id=expense.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-success fa fa-trash-alt" type="submit" value="Delete" data-toggle="tooltip" title="Delete Expense" aria-label="Delete expense"></button>
+                </form>
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="expense-footer font-weight-bolder">
+    <div class="lead para expense-stat" >Total Expenses: ${{month_sum | floatformat:2}}</div>
+    <div class="lead para text-primary expense-stat">Monthly Expense Limit: 
+      <span class="undrline border_expense-limit">
+        {% if monthly_expense_limit != "N/A" %}
+          ${{monthly_expense_limit | floatformat:2}}
+        {% else %}
+          --
+        {% endif %}
+      </span>
+    </div>  
+    <div class="lead para expense-stat" style="color: {{net_monthly_expense_margin_color}};">Budget Margin: ${{net_monthly_expense_margin | floatformat:2}}</div>
+  </div>
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js" integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+{% endblock %}

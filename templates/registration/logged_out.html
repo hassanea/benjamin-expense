@@ -1,0 +1,11 @@
+{% extends 'expenses/base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+<body>
+    <p class="lead para">Logged out!</p>  
+    <a href="{% url 'login'%}">Click here to login again.</a>
+</body>    
+{% endblock %}

@@ -1,0 +1,176 @@
+body {
+    background-color: #ccffcc;
+}
+
+.mainhead {
+    font-family: 'Tangerine', cursive;
+    font-size: 4rem;
+    color: forestgreen;
+    background-color: #eee;
+    text-shadow: 3px 3px palegreen;
+    border: 30px solid;
+    border-image: url("../images/100-dollar_bills.jpg") 24% repeat;
+}
+
+.horizRule { /* Reference: https://www.cssportal.com/blog/style-hr-tag-with-css/ */
+  padding: 0;
+  border: none; 
+  border-top: medium double #8c8c8c; 
+  color: #8c8c8c; 
+  text-align: center; 
+    
+} 
+
+.horizRule:after { 
+  content: "$"; 
+  display: inline-block; 
+  position: relative; 
+  top: -0.7em; 
+  font-size: 1.5em; 
+  padding: 0 0.25em; 
+  background: #fff; 
+  text-shadow: 1px 1px palegreen;    
+  color: green;
+}
+
+mark {
+    background-color: yellow;
+}
+
+.submainhead {
+    font-family: 'Tangerine', cursive;
+    font-size: 4rem;
+}
+
+.subhead, .para, .list-style {
+    font-family: 'Philosopher', sans-serif;
+}
+
+.bg_pwb {
+    background-color: powderblue;
+}
+
+.btn-style {
+    background-color: greenyellow;
+}
+
+.btn-style-cl {
+    background-color: palevioletred;
+}
+
+.tooltip-inner {
+    background-color: cadetblue;
+    color: black;
+}
+
+.navigation-container {
+    width: 500px;
+}
+
+.date-header {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    border: 4px solid black;
+    border-radius: 10px;
+    background-color: chartreuse;
+}
+
+.undrline {
+     text-decoration: underline;
+}
+
+.arrowbtns {
+    position: relative;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+.buttonDrop {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.expense-container {
+    width: 55%;
+    min-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expense-list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list-group {
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0.2, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.expense-controls {
+    position: relative;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px; 
+}
+
+.expense-control-add {
+    position: relative;
+    top: 7px;
+}
+
+.expense-control-search {
+    margin-left: 10%;
+    background-image: url("../images/search-dollar-solid.svg");
+    background-position: 1px 1px; 
+    background-repeat: no-repeat;
+    padding: 6px 10px 6px 20px;
+
+    /* inspired by https://css-tricks.com/styling-texty-inputs-only/ */
+    border: 5px solid white; 
+    box-shadow: 
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1); 
+}
+
+.expense-list-item {
+    margin-bottom: 5px; 
+}
+
+.expense-item-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: crimson;
+    
+}
+
+.expense-item-delete-form {
+    float: right;
+    display: block;
+}
+
+.expense-item-date {
+    float: left;
+    display: block;
+    color: #666666;
+}
+
+.expense-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #9fdf9f;
+    margin-top: 20px;
+}
+
+.expense-stat {
+    float: left;
+    margin-left: 10px;
+    margin-right: 60px;
+    position: relative;
+}
