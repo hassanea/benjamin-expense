@@ -6,12 +6,16 @@
 The purpose of the **Benjamin** project was to create a web-based personal budgetting tool to keep track of your expenses.
 
 
+## Hosted Project
+ *Benjamin webapp is hosted on Heroku:
+    * URL:  https://benjamin-expense.herokuapp.com/accounts/login/
+    
 ## Running the Project
 
-1.  Clone the project from https://github.com/OUnagiles/project3370
-      * Use `git clone` https://github.com/OUnagiles/project3370     
-2.  Navigate to the directory where project3370 folder is located.
-3.  In the terminal, change directory `cd` into the project3370 folder.
+1.  Clone the project from https://github.com/hassanea/benjamin-expense
+      * Use `git clone` https://github.com/hassanea/benjamin-expense    
+2.  Navigate to the directory where benjamin-expense folder is located.
+3.  In the terminal, change directory `cd` into the benjamin-expense folder.
 4.  Next, use the commands below depending on your OS and apply the migrate command.
      * **Note**: You must do migrations in order for the SQLite database and Django Webapp to work properly together.
 * **Window**
